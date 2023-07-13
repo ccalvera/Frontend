@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { RickAndMortyService } from 'src/app/services/rick-and-morty.service';
 import { Libro } from 'src/models/Libro';
 
 @Component({
@@ -8,7 +9,11 @@ import { Libro } from 'src/models/Libro';
   styleUrls: ['./padre.component.css'],
 })
 export class PadreComponent implements OnInit {
-  constructor() {}
+  constructor(private service: RickAndMortyService) {
+    this.service.getAllCharacters().subscribe((res) => {
+      console.log(res);
+    });
+  }
 
   public mensajePadre: string = 'No he recibido nada';
 
